@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private bool keyJumpOff;
 
     private bool onGround;
+    private bool jumped;
+    private bool moving;
     private bool onPlatform;
     private bool obsticlenOnLeft;
     private bool obsticlenOnRight;
@@ -32,10 +34,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 botRight;
     private Vector2 topLeft;
     private Vector2 topRight;
+
+    private Animator[] animators;
     // Use this for initialization
     void Start()
     {
-
+        animators = GetComponentsInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour
         obsticlenOnRight = CheckCollision(topRight, Vector2.right, pixelSize, solid) || CheckCollision(botRight, Vector2.right, pixelSize, solid);
 
         getInput();
+        Animate();
         Move();
     }
 
@@ -71,9 +76,25 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (keyLeft && !obsticlenOnLeft) hsp = -moveSpeed * Time.deltaTime;
-        if (keyRight && !obsticlenOnRight) hsp = moveSpeed * Time.deltaTime;
-        if ((!keyLeft && !keyRight) || (keyLeft && keyRight)) hsp = 0;
+        if (keyLeft && !obsticlenOnLeft)
+        {
+            hsp = -moveSpeed * Time.deltaTime;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (keyRight && !obsticlenOnRight)
+        {
+            hsp = moveSpeed * Time.deltaTime;
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        if ((!keyLeft && !keyRight) || (keyLeft && keyRight))
+        {
+            moving = false;
+            hsp = 0;
+        }
+        if(keyRight || keyLeft)
+        {
+            moving = true;
+        }
 
         if (onPlatform && keyJumpOff)
         {
@@ -83,6 +104,7 @@ public class PlayerController : MonoBehaviour
 
         if (keyJump && onGround)
         {
+            jumped = true;
             vsp = jumpHeight;
             onGround = false;
         }
@@ -154,6 +176,11 @@ public class PlayerController : MonoBehaviour
             hsp = 0;
         }
 
+        if(vsp == 0)
+        {
+            jumped = false;
+        }
+
         transform.position = new Vector2(transform.position.x + hsp, transform.position.y + vsp);
     }
 
@@ -187,5 +214,17 @@ public class PlayerController : MonoBehaviour
         botLeft = new Vector2(b.min.x, b.min.y);
         topRight = new Vector2(b.max.x, b.max.y);
         botRight = new Vector2(b.max.x, b.min.y);
+    }
+
+    //Các biến dùng trong Animator
+    private void Animate()
+    {
+        for (int i = 0; i < animators.Length; i++)
+        {
+            animators[i].SetBool("OnGround",onGround);
+            animators[i].SetBool("Jumped", jumped);
+            animators[i].SetBool("Moving", moving);
+            animators[i].SetFloat("VSP", vsp);
+        }
     }
 }
