@@ -1712,7 +1712,7 @@ Animator:
   m_GameObject: {fileID: 1110548052}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4acf28d3fd49c344f87125dfd4be651c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7bcf64d8abb24784c8bd8b80d375fe02, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1799,11 +1799,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -94.96
+      value: -95.47
       objectReference: {fileID: 0}
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.98
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1833,6 +1833,35 @@ Prefab:
         type: 2}
       propertyPath: oneway.m_Bits
       value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: basicProjectile
+      value: 
+      objectReference: {fileID: 1132677683763852, guid: a215ae8cca083df4abbd861a0b55dd91,
+        type: 2}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: shootDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: jumpHeight
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: gravity
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928095206106652, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928095206106652, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
@@ -3045,7 +3074,7 @@ Animator:
   m_GameObject: {fileID: 2095103105}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b52e1d9b04901d243907ff4483c234f9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 08b3b9fcdc6b6ea46a9026fa1b547da9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

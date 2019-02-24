@@ -2,9 +2,14 @@
 
 public class PlayerController : MonoBehaviour
 {
+    private GameObject currentProjectile;
+    public GameObject basicProjectile;
+
     public float moveSpeed;
     public float jumpHeight;
     public float gravity;
+    public float shootDelay;
+    private float shootDelayCounter;
     //horizontal
     private float hsp;
     //vertical
@@ -39,7 +44,9 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentProjectile = basicProjectile;
         animators = GetComponentsInChildren<Animator>();
+        shootDelayCounter = 0;
     }
 
     // Update is called once per frame
@@ -61,6 +68,7 @@ public class PlayerController : MonoBehaviour
         getInput();
         Animate();
         Move();
+        Shoot();
     }
 
     void getInput()
@@ -70,7 +78,7 @@ public class PlayerController : MonoBehaviour
         keyUp = Input.GetKey(KeyCode.UpArrow);
         keyDown = Input.GetKey(KeyCode.DownArrow);
         keyJump = Input.GetKeyDown(KeyCode.Z);
-        keyAction = Input.GetKey(KeyCode.LeftControl);
+        keyAction = Input.GetKey(KeyCode.X);
         keyJumpOff = keyDown && keyJump;
     }
 
@@ -182,6 +190,18 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = new Vector2(transform.position.x + hsp, transform.position.y + vsp);
+    }
+
+    private void Shoot()
+    {
+        if(keyAction && shootDelayCounter <= 0)
+        {
+            if((currentProjectile == basicProjectile) && FindObjectsOfType<Projectile>().Length < 4)
+            {
+                Instantiate(currentProjectile, transform.position, transform.rotation);
+                shootDelayCounter -= Time.deltaTime;
+            }
+        }
     }
 
     private bool CheckCollision(Vector2 raycastOrigin, Vector2 direction, float distance, LayerMask layer)

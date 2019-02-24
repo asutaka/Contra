@@ -33,6 +33,7 @@ TextureImporter:
     21300056: Player_28
     21300058: Player_29
     21300060: Player_30
+    21300062: Player_31
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -732,13 +733,33 @@ TextureImporter:
         width: 2
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 41e6b6f5a577369499c8744bad688ba6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_31
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 108
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70535b7a352fa8940ba7558a9e3d98d9
       vertices: []
       indices: 
       edges: []
