@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
     public int direction;
 
     public float[] shootAngles;
-    private float currentShootAngle;
     private Quaternion rot;
+
+    private Transform currentShootPoint;
+    public Transform[] shootPoints;
 
     public LayerMask solid;
     public LayerMask oneway;
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
         getInput();
         CalculateDirection();
         CalculateShootAngles();
+        CalculateShootPoint();
         Animate();
         Move();
         Shoot();
@@ -206,10 +209,11 @@ public class PlayerController : MonoBehaviour
         {
             if((currentProjectile == basicProjectile) && FindObjectsOfType<Projectile>().Length < 4)
             {
-                Instantiate(currentProjectile, transform.position, rot);
-                shootDelayCounter -= Time.deltaTime;
+                Instantiate(currentProjectile, currentShootPoint.position, rot);
+                shootDelayCounter = shootDelay;
             }
         }
+        shootDelayCounter -= Time.deltaTime;
     }
 
     void CalculateDirection()
@@ -241,6 +245,17 @@ public class PlayerController : MonoBehaviour
         if (direction == 7) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[1]);
         if (direction == 4) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[2]);
         if (direction == 1) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[3]);
+    }
+
+    void CalculateShootPoint()
+    {
+        if (onGround && direction == 8) currentShootPoint = shootPoints[0];
+        if (!jumped && (direction == 9 || direction == 7)) currentShootPoint = shootPoints[1];
+        if (!jumped && (direction == 4 || direction == 6)) currentShootPoint = shootPoints[2];
+        if (!jumped && (direction == 1 || direction == 3)) currentShootPoint = shootPoints[3];
+        if (!jumped && keyDown && !moving) currentShootPoint = shootPoints[4];
+        if (!onGround && keyDown) currentShootPoint = shootPoints[2];
+        if (jumped) currentShootPoint = transform;
     }
     private bool CheckCollision(Vector2 raycastOrigin, Vector2 direction, float distance, LayerMask layer)
     {
@@ -285,6 +300,7 @@ public class PlayerController : MonoBehaviour
             animators[i].SetFloat("VSP", vsp);
             animators[i].SetInteger("Direction",direction);
             animators[i].SetBool("Shooting",keyAction);
+            animators[i].SetBool("KeyDown", keyDown);
         }
     }
 }
