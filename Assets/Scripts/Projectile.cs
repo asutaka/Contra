@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myRigidbody.AddRelativeForce(Vector2.right * movespeed,ForceMode2D.Impulse);
+        myRigidbody.AddRelativeForce(Vector2.up * movespeed,ForceMode2D.Impulse);
 	}
 	
 	// Update is called once per frame

@@ -1797,6 +1797,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: shootAngles.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.x
       value: -95.47
@@ -1862,6 +1867,31 @@ Prefab:
     - target: {fileID: 4928095206106652, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: shootAngles.Array.data[1]
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: shootAngles.Array.data[2]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: shootAngles.Array.data[3]
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: shootAngles.Array.data[4]
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: direction
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}

@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     private float vsp;
 
     public float pixelSize;
+    public int direction;
+
+    public float[] shootAngles;
+    private float currentShootAngle;
+    private Quaternion rot;
 
     public LayerMask solid;
     public LayerMask oneway;
@@ -47,6 +52,7 @@ public class PlayerController : MonoBehaviour
         currentProjectile = basicProjectile;
         animators = GetComponentsInChildren<Animator>();
         shootDelayCounter = 0;
+        rot = new Quaternion(0,0,0,0);
     }
 
     // Update is called once per frame
@@ -66,6 +72,8 @@ public class PlayerController : MonoBehaviour
         obsticlenOnRight = CheckCollision(topRight, Vector2.right, pixelSize, solid) || CheckCollision(botRight, Vector2.right, pixelSize, solid);
 
         getInput();
+        CalculateDirection();
+        CalculateShootAngles();
         Animate();
         Move();
         Shoot();
@@ -198,12 +206,42 @@ public class PlayerController : MonoBehaviour
         {
             if((currentProjectile == basicProjectile) && FindObjectsOfType<Projectile>().Length < 4)
             {
-                Instantiate(currentProjectile, transform.position, transform.rotation);
+                Instantiate(currentProjectile, transform.position, rot);
                 shootDelayCounter -= Time.deltaTime;
             }
         }
     }
 
+    void CalculateDirection()
+    {
+        if(keyUp && !keyRight && !keyLeft && !keyDown) direction = 8;
+        else if (jumped && keyDown && !keyRight && !keyLeft) direction = 2;
+        else if (transform.localScale.x > 0)
+        {
+            if(keyUp && keyRight) direction = 9;
+            else if(keyDown && keyRight) direction = 3;
+            else if( keyDown && !keyRight) direction = 6;
+            else direction = 6;
+        }
+        else if (transform.localScale.x < 0)
+        {
+            if (keyUp && keyLeft) direction = 7;
+            else if (keyDown && keyLeft) direction = 1;
+            else if (keyDown && !keyLeft) direction = 4;
+            else direction = 4;
+        }
+    }
+    void CalculateShootAngles()
+    {
+        if(direction == 8) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[0]);
+        if (direction == 9) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -shootAngles[1]);
+        if (direction == 6) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -shootAngles[2]);
+        if (direction == 3) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -shootAngles[3]);
+        if (direction == 2) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[4]);
+        if (direction == 7) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[1]);
+        if (direction == 4) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[2]);
+        if (direction == 1) rot = Quaternion.Euler(transform.rotation.x, transform.rotation.y, shootAngles[3]);
+    }
     private bool CheckCollision(Vector2 raycastOrigin, Vector2 direction, float distance, LayerMask layer)
     {
         return Physics2D.Raycast(raycastOrigin, direction, distance, layer);
@@ -245,6 +283,8 @@ public class PlayerController : MonoBehaviour
             animators[i].SetBool("Jumped", jumped);
             animators[i].SetBool("Moving", moving);
             animators[i].SetFloat("VSP", vsp);
+            animators[i].SetInteger("Direction",direction);
+            animators[i].SetBool("Shooting",keyAction);
         }
     }
 }
