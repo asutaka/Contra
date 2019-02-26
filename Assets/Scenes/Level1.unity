@@ -1926,11 +1926,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -95.47
+      value: -94.83
       objectReference: {fileID: 0}
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.93
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 4575962583845596, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2040,6 +2040,46 @@ Prefab:
       propertyPath: shootPoints.Array.data[4]
       value: 
       objectReference: {fileID: 597611635}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: ducColliderSize
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: duckColliderOffset
+      value: -1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 61030150811295154, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61030150811295154, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.571942
+      objectReference: {fileID: 0}
+    - target: {fileID: 61030150811295154, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.156116
+      objectReference: {fileID: 0}
+    - target: {fileID: 114861402010701500, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: duckColliderSize
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 61030150811295154, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61030150811295154, guid: 0f4bd604c7b4ebe4397d976b95d38484,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f4bd604c7b4ebe4397d976b95d38484, type: 2}
   m_IsPrefabParent: 0

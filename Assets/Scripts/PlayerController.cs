@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
     public float[] shootAngles;
     private Quaternion rot;
 
+    private BoxCollider2D myColl;
+
+    private float originColliderSize;
+    private float originColliderOffset;
+    public float duckColliderSize;
+    public float duckColliderOffset;
+
     private Transform currentShootPoint;
     public Transform[] shootPoints;
 
@@ -55,6 +62,9 @@ public class PlayerController : MonoBehaviour
         animators = GetComponentsInChildren<Animator>();
         shootDelayCounter = 0;
         rot = new Quaternion(0,0,0,0);
+        myColl = GetComponent<BoxCollider2D>();
+        originColliderSize = myColl.size.y;
+        originColliderOffset = myColl.offset.y;
     }
 
     // Update is called once per frame
@@ -74,6 +84,18 @@ public class PlayerController : MonoBehaviour
         obsticlenOnRight = CheckCollision(topRight, Vector2.right, pixelSize, solid) || CheckCollision(botRight, Vector2.right, pixelSize, solid);
 
         getInput();
+
+        if (onGround && keyDown)
+        {
+            myColl.size = new Vector2(myColl.size.x, duckColliderSize);
+            myColl.offset = new Vector2(myColl.offset.x, duckColliderOffset);
+        }
+        else
+        {
+            myColl.size = new Vector2(myColl.size.x, originColliderSize);
+            myColl.offset = new Vector2(myColl.offset.x, originColliderOffset);
+        }
+
         CalculateDirection();
         CalculateShootAngles();
         CalculateShootPoint();
